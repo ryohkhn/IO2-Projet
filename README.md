@@ -1,3 +1,3 @@
 # IO2-Projet
 
-Projet de réseau social.
+Projet de réseau social animalier.
