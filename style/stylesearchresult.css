@@ -6,6 +6,11 @@ body{
     color: white;
 }
 
+div{
+    margin-top: 10%;
+    margin-left: 40%;
+}
+
 header{
     display: flex;
     justify-content: space-between;
@@ -13,3 +18,4 @@ header{
     margin-top: 15px;
     margin-left: 5px;
 }
+

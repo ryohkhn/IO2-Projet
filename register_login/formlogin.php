@@ -10,7 +10,7 @@ function formlogin(){
     echo '<input type="password" name="password" id="password" required><br><br>';
     echo '<input type="submit">';
     echo '</form><br>';
-    echo '<a href="./login.php">Créer votre compte</a>';
+    echo '<a href="./register.php">Créer votre compte</a>';
     echo '</div>';
 }
 
@@ -25,7 +25,7 @@ function formloginfail(){
     echo '<input type="password" name="password" id="password" required><br><br>';
     echo '<input type="submit">';
     echo '</form><br>';
-    echo '<a href="./login.php">Créer votre compte</a>';
+    echo '<a href="./register.php">Créer votre compte</a>';
     echo '</div>';
 }
 

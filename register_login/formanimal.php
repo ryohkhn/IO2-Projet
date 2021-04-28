@@ -17,8 +17,9 @@ function formanimal($quantity){
         echo '<option value="poisson">Poisson</option>';
         echo '<option value="reptile">Réptile</option>';
         echo '</select><br><br>';
-        echo '<label for="description'.$animal.'">Description de l\'animal (race, couleur, caractéristiques...).</label><br>';
-        echo '<input type="text" name="description'.$animal.'" id="description'.$animal.'" maxlength="150"><br><br>';
+        echo '<label for="description'.$animal.'">Description de l\'animal (race, couleur, caractéristiques...).</label><br><br>';
+        echo '<textarea name="description'.$animal.'" id="description'.$animal.'" cols="35" rows="8" maxlength="150"></textarea><br><br>';
+        //echo '<input type="text" name="description'.$animal.'" id="description'.$animal.'" maxlength="150"><br><br>';
         $quantity--;
     }
     echo '<input type="submit">';
