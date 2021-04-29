@@ -9,7 +9,7 @@ function publicationcheck(){
         $id=$_SESSION['id'];
         $req="INSERT INTO post(publication,post_id) VALUES ('$publication','$id')";
         mysqli_query($connexion,$req);
-        //header('Location: ./accueil.php?success=true');
+        header('Location: ./accueil.php?success=true');
     }
 }
 
