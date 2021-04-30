@@ -31,26 +31,29 @@ echo " :";
 echo "<br>";
 modif();
 $a=$_SESSION['profil']['id'];
-if(!empty($_GET[''.$a.''])){
-    echo "test";
-    $b=$_GET[''.$a.''];
-    if(!file_exists($b)) echo "true";
-    $c=base64_encode(file_get_contents($a));
+echo $a;
+echo "<br>";
+if(!empty($_POST[''.$a.''])){
+    $b=$_POST[''.$a.''];
+    echo $b;
+    echo "<br>";
+    $c=base64_encode($b);
+    echo $c;
     $insert="INSERT INTO profil(pp_pic) VALUES (''.$c.'')";
     mysqli_query($connexion,$insert);
 }
-unset($_GET['valider']);
-unset($_GET['modif']);
+unset($_POST['valider']);
+unset($_POST['modif']);
 //echo "<script type='text/javascript'>document.location.replace('profil.php');</script>";
 
-if(!empty($_GET[''.$a.''])){
+if(!empty($_POST[''.$a.''])){
     // la partie qui suit a été empruntée sur stackoverflow pour comprendre comment afficher une image
-    $b=$_SESSION['id'];
-    $sql = "SELECT pp_pic FROM profil WHERE profil_id = ''.$b.''";
+    $d=$_SESSION['id'];
+    $sql = "SELECT pp_pic FROM profil WHERE profil_id = ''.$d.''";
     $connexion=connect();
     $sth = mysqli_query($connexion,$sql);
-    $result=mysqli_fetch_assoc($sth);
-    print_r($result);
+    //$result=mysqli_fetch_assoc($sth);
+    //print_r($result);
     //echo '<img src="data:image/jpeg;base64,'.base64_encode( $result ).'"/>';
     // fin emprunt
 }
