@@ -6,8 +6,8 @@ function modifppanimaux(){
     $connexion=connect();
     $result=mysqli_query($connexion,$request);
     while($animaux=mysqli_fetch_assoc($result)){
-        echo '<input type="file" name="'.$animaux['id'].'">';
-        echo '<label for="'.$animaux['id'].'">modifier la photo de votre '.$animaux['type'].' '.$animaux['description'].'</label>';
+        echo '<input type="file" name="'.$animaux['id'].'" value="photo animal">';
+        echo 'modifier la photo de votre '.$animaux['type'].' '.$animaux['description'].'';
         echo "<br>";
         echo "<br>";
     }

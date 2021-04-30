@@ -30,38 +30,6 @@ echo $_SESSION['nickname'];
 echo " :";
 echo "<br>";
 modif();
-$a=$_SESSION['profil']['id'];
-echo $a;
-echo "<br>";
-if(!empty($_POST[''.$a.''])){
-    $b=$_POST[''.$a.''];
-    echo $b;
-    echo "<br>";
-    $c=base64_encode($b);
-    echo $c;
-    $insert="INSERT INTO profil(pp_pic) VALUES (''.$c.'')";
-    mysqli_query($connexion,$insert);
-}
-unset($_POST['valider']);
-unset($_POST['modif']);
-//echo "<script type='text/javascript'>document.location.replace('profil.php');</script>";
-
-if(!empty($_POST[''.$a.''])){
-    // la partie qui suit a été empruntée sur stackoverflow pour comprendre comment afficher une image
-    $d=$_SESSION['id'];
-    $sql = "SELECT pp_pic FROM profil WHERE profil_id = ''.$d.''";
-    $connexion=connect();
-    $sth = mysqli_query($connexion,$sql);
-    //$result=mysqli_fetch_assoc($sth);
-    //print_r($result);
-    //echo '<img src="data:image/jpeg;base64,'.base64_encode( $result ).'"/>';
-    // fin emprunt
-}
-echo "<br>";
-echo "<br>";
-echo "<br>";
-
-
 
 ?>
 </body>
