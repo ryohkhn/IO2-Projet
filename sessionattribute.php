@@ -8,6 +8,9 @@ function sessionattribute($nickname){
     $id=$fetchquery['id'];
     $_SESSION['id']=$id;
     $_SESSION['nickname']=$nickname;
+    $req2="SELECT * FROM profil WHERE profil_id='$id'";
+    $query2=mysqli_query($connexion,$req2);
+    $_SESSION['profil']=mysqli_fetch_assoc($query2);
 }
 
 ?>

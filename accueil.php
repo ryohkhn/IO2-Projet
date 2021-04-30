@@ -9,7 +9,7 @@ require_once "./accueil_fonction/unsetregistervalues.php";
 require_once "./connexion_db/connexion.php";
 require_once "./accueil_fonction/publicationcheck.php";
 require_once "./accueil_fonction/accueilheader.php";
-
+$_SESSION['page']="accueil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
     echo '<a href="./register_login/register.php">Inscrivez-vous</a><br>';
@@ -33,6 +33,9 @@ publicationcheck();
 if(isset($_GET['success']) && $_GET['success']=='true'){
   echo '<h5>Publication envoyée</h5>';
 }
+
+
+echo '<a href="profil.php">Voir mon profil</a>';
 ?>
 </div>
 
