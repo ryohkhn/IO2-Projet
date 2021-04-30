@@ -29,25 +29,34 @@ echo "profil de ";
 echo $_SESSION['nickname'];
 echo " :";
 echo "<br>";
+modif();
+$a=$_SESSION['profil']['id'];
+if(!empty($_GET[''.$a.''])){
+    echo "test";
+    $b=$_GET[''.$a.''];
+    if(!file_exists($b)) echo "true";
+    $c=base64_encode(file_get_contents($a));
+    $insert="INSERT INTO profil(pp_pic) VALUES (''.$c.'')";
+    mysqli_query($connexion,$insert);
+}
+unset($_GET['valider']);
+unset($_GET['modif']);
+//echo "<script type='text/javascript'>document.location.replace('profil.php');</script>";
 
-
-if(modif()){
-    $a=$profil['id'];
-    if(!empty($_GET[''.$a.''])){
-        // la partie qui suit a été empruntée sur stackoverflow pour comprendre comment afficher une image
-        $b=$_SESSION['id'];
-        $sql = "SELECT description FROM profil WHERE profil_id = $b";
-        $connexion=connect();
-        $sth = mysqli_query($connexion,$sql);
-        $result=mysqli_fetch_assoc($sth);
-        echo '<img src="data:image/jpeg;base64,'.base64_encode( $result ).'"/>';
-        // fin emprunt
-    }
+if(!empty($_GET[''.$a.''])){
+    // la partie qui suit a été empruntée sur stackoverflow pour comprendre comment afficher une image
+    $b=$_SESSION['id'];
+    $sql = "SELECT pp_pic FROM profil WHERE profil_id = ''.$b.''";
+    $connexion=connect();
+    $sth = mysqli_query($connexion,$sql);
+    $result=mysqli_fetch_assoc($sth);
+    print_r($result);
+    //echo '<img src="data:image/jpeg;base64,'.base64_encode( $result ).'"/>';
+    // fin emprunt
 }
 echo "<br>";
 echo "<br>";
 echo "<br>";
-echo $test44;
 
 
 

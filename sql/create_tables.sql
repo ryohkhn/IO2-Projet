@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS profil (
   id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   description VARCHAR(200) DEFAULT '',
   profil_id INT(8) UNSIGNED NOT NULL,
-  pp_pic BLOB NOT NULL,
+  pp_pic varchar(65535) DEFAULT '',
   PRIMARY KEY (id),
   FOREIGN KEY (profil_id) REFERENCES users (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

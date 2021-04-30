@@ -10,8 +10,6 @@ function modif(){
         modifppanimaux();
         validermodif();
     }
-    //
-    return true;
    
 }
 

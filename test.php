@@ -9,5 +9,6 @@ $req="INSERT INTO post(description,post_id) VALUES ('test','10')";
 $query=mysqli_query($connexion,$req);
 echo '<p>done</p>';
 
+// salut je veu_x voir si ça bug
 
 ?>
