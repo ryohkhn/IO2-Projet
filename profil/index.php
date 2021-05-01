@@ -3,6 +3,7 @@ session_start();
 require_once "../connexion_db/connexion.php";
 require_once "../sessionattribute.php";
 require_once "upload.php";
+require_once "modifppanimaux.php";
 $co=connect();
 echo "<!DOCTYPE html>";
 echo "<html>";
@@ -13,17 +14,15 @@ echo "<body>";
 echo '<form action="" method="post" enctype="multipart/form-data">';
 echo "Modifiez ce que vous souhaitez puis appuyez sur valider :";
 echo "<br>";
-if(isset($_POST['pp'])){
-    $b=$_POST['pp'];
-    echo '<input type="file" name="pp" value="'.$b.'">';
-}else{
-    echo '<input type="file" name="pp">';
-}
+echo '<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />';
+echo '<input type="file" name="pp">';
 
 echo '<label for="pp">modifier la photo de votre profil</label>';
-if(!empty($_POST['pp'])){
-    echo "ça marche";
-    upload($_POST['pp']);
+if(isset($_FILES['pp']['tmp_name'])){
+    if(!upload($_FILES['pp'])){
+        header('Location: http://localhost/GitHub/IO2-Projet/profil/erreur.html');
+    }
+    
     
 }
 echo "<br>";

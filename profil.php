@@ -3,10 +3,7 @@ session_start();
 require_once "./register_login/accountcheck.php";
 require_once "./sessionattribute.php";
 require_once "./connexion_db/connexion.php";
-require_once "./profil/modifppanimaux.php";
-require_once "./profil/modifpp.php";
 require_once "./profil/modif.php";
-require_once "./profil/validermodif.php";
 $_SESSION['page']="profil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 ?>
 <!DOCTYPE html>
