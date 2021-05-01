@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS animal (
   id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   type CHAR(10) NOT NULL DEFAULT '',
   description VARCHAR(150) DEFAULT '',
+  pp_pic varchar(100) DEFAULT '',
   animal_id INT(8) UNSIGNED NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (animal_id) REFERENCES users (id)
