@@ -31,7 +31,11 @@ if(isset($_POST['search'])){
     }else{
         echo '<div>';
         while($queryarray=mysqli_fetch_assoc($query)){
+            echo '<a href="../profil.php?nickname=';
             echo $queryarray['nickname'];
+            echo '">';
+            echo $queryarray['nickname'];
+            echo '</a>';
             echo '<br>';
         }   
         echo '</div>';
