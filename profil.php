@@ -2,7 +2,7 @@
 
 session_start();
 $title='Profil';
-$style='./style/styleaccueil.css';
+$style='./style/styleprofil.css';
 require_once "./include/header.inc.php";
 require_once "./register_login/accountcheck.php";
 require_once "./sessionattribute.php";
@@ -10,10 +10,12 @@ require_once "./connexion_db/connexion.php";
 require_once "./profil/modif.php";
 require_once "./profil/usersprofil.php";
 require_once "./profil/isfollowing.php";
+require_once "./profil/profilheader.php";
 
 $_SESSION['page']="profil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 
 // On verifie si l'utilisateur est connecté
+
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
     echo '<a href="./register_login/register.php">Inscrivez-vous</a><br>';
@@ -21,18 +23,16 @@ if(!accountcheck()){
     exit;
 }
 
+profilheader();
+
 // Page de profil d'un utilisateur recherché
 if(isset($_GET['nickname'])){
     usersprofilsearched($_GET['nickname']);
-    exit;
+} else{
+    usersprofil();
 }
 
-echo "profil de ";
-echo $_SESSION['nickname'];
-echo " :";
-echo "<br>";
-modif();
+
+require_once "./include/footer.inc.php";
 
 ?>
-</body>
-</html>
