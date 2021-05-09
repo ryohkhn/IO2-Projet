@@ -1,5 +1,7 @@
 <?php
 
+// fonction ajoutant dans la base de donnée la publication de l'utilisateur
+
 function publicationcheck(){
     if(isset($_POST['publication'])){
         $connexion=connect();

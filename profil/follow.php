@@ -4,6 +4,8 @@ session_start();
 require_once "../connexion_db/connexion.php";
 require_once "./isfollowing.php";
 
+// fonction qui ajoute ou supprime la ligne correspond à un abonnement dans la base de donnée
+
 if(isset($_GET['followed_id'])){
     $connexion=connect();
     $follower_id=$_SESSION['id'];
@@ -20,9 +22,15 @@ if(isset($_GET['followed_id'])){
     while($ligne=mysqli_fetch_assoc($query)){
         $nicknamefollowed=$ligne['nickname'];
     }
+
+    // renvoi sur la page profil depuis laquelle la fonction a été appellée 
+
     header('Location: ../profil.php?nickname='.$nicknamefollowed.'');
     exit;
 }else{
+
+    // renvoi sur l'accueil dans le cas ou l'utilisateur va sur la page sans passer par le bouton d'abonnement 
+
     header('Location: ../accueil.php');
     exit;
 }

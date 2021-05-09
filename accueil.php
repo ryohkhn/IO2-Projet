@@ -9,6 +9,12 @@ require_once "./accueil_fonction/unsetregistervalues.php";
 require_once "./connexion_db/connexion.php";
 require_once "./accueil_fonction/publicationcheck.php";
 require_once "./accueil_fonction/accueilheader.php";
+require_once "./accueil_fonction/postform.php";
+require_once "./accueil_fonction/timelinedisplay.php";
+require_once "./accueil_fonction/idreference.php";
+require_once "./accueil_fonction/isliked.php";
+
+
 $_SESSION['page']="accueil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
@@ -20,26 +26,12 @@ unsetregistervalues();
 
 accueilheader();
 publicationcheck();
-?>
+postform();
 
-<h1>Hello jeune utilisateur !</h1>
-
-<div id="publication">
-<form action="./accueil.php" method="post">
-<textarea name="publication" id="publication" cols="30" rows="10" maxlength="200" required></textarea>
-<input type="submit" value="Post">
-</form>
-<?php
-if(isset($_GET['success']) && $_GET['success']=='true'){
-  echo '<h5>Publication envoyée</h5>';
-}
-
+timelinedisplay();
 
 echo '<a href="profil.php">Voir mon profil</a>';
-?>
-</div>
 
-<?php
 
 require_once "./include/footer.inc.php";
 

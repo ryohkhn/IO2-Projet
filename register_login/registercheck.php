@@ -18,6 +18,10 @@ function registercheck(){
             $req="INSERT INTO users(nickname,password) VALUES ('$nickname','$password')";
             mysqli_query($connexion,$req);
             sessionattribute($nickname);
+            // ajoute dans la table le fait qu'une personne se follow elle même dès l'inscription
+            $id=$_SESSION['id'];
+            $req2="INSERT INTO relationships(follower_id,followed_id) VALUES('$id','$id')";
+            mysqli_query($connexion,$req2);
             return true;
         }else{
             formregister();

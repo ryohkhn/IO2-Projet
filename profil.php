@@ -12,7 +12,9 @@ require_once "./profil/usersprofil.php";
 require_once "./profil/isfollowing.php";
 require_once "./profil/profilheader.php";
 
-$_SESSION['page']="profil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
+// sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
+
+$_SESSION['page']="profil.php"; 
 
 // On verifie si l'utilisateur est connecté
 
@@ -26,6 +28,7 @@ if(!accountcheck()){
 profilheader();
 
 // Page de profil d'un utilisateur recherché
+
 if(isset($_GET['nickname'])){
     usersprofilsearched($_GET['nickname']);
 } else{

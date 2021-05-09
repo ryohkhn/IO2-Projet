@@ -60,12 +60,30 @@ function usersprofilsearched($nickname){
 
     // Affichage des posts du compte
 
-    $req3="SELECT publication FROM post WHERE post_id='$id'";
+    $req3="SELECT * FROM post WHERE post_id='$id'";
     $query3=mysqli_query($connexion,$req3);
     echo '<div id="divposts">';
     while($ligne=mysqli_fetch_assoc($query3)){
+        $postid=$ligne['post_id'];
         echo '<div>';
+        echo '@'.$nickname;
+        echo '<p>';
         echo $ligne['publication'];
+        echo '</p>';
+        echo '</div>';
+        echo '<div>';
+        echo '<button id="likebutton'.$ligne['id'].'">Like</button>';
+        echo '<script>';
+        echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';
+        echo "btn.addEventListener('click', function() {";
+        echo "document.location.href = './accueil_fonction/like.php?postid=";
+        echo $ligne['id'];
+        echo "&profil=";
+        echo $nickname;
+        echo "';";
+        echo '});';
+        echo '</script>';
+        echo $ligne['likescount'];
         echo '</div>';
     }
     echo '</div>';
