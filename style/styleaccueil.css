@@ -12,5 +12,10 @@ header{
     margin-right: 5px;
     margin-top: 15px;
     margin-left: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
+}
+
+#adminline{
+    margin-left: 5px;
+    margin-bottom: 20px;
 }

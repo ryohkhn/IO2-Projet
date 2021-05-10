@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS profil;
 DROP TABLE IF EXISTS relationships;
 DROP TABLE IF EXISTS postlikes;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS administrators;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -56,3 +57,19 @@ CREATE TABLE IF NOT EXISTS postlikes(
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (publication_id) REFERENCES post (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS administrators(
+  administrators_id INT(8) UNSIGNED NOT NULL,
+  super BOOLEAN NOT NULL DEFAULT false,
+  admin BOOLEAN NOT NULL DEFAULT false,
+  PRIMARY KEY (administrators_id),
+  FOREIGN KEY (administrators_id) REFERENCES users (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* il faudra mettre un superadmin après la création de l'un des comptes dans la base de donnée via cette requête
+
+INSERT INTO administrators VALUES(administrators_id,1,1)
+
+"administrators_id" étant l'"id" du compte dans la table users
+
+Ensuite le superadmin pourra ajouter des administrateurs via leur page de profil */

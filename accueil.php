@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+
 $title='Page d\'enregistrement';
 $style='./style/styleaccueil.css';
 require_once "./include/header.inc.php";
@@ -13,9 +13,11 @@ require_once "./accueil_fonction/postform.php";
 require_once "./accueil_fonction/timelinedisplay.php";
 require_once "./accueil_fonction/idreference.php";
 require_once "./accueil_fonction/isliked.php";
-
+require_once "./profil/isadmin.php";
+require_once "./profil/issuperadmin.php";
 
 $_SESSION['page']="accueil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
+
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
     echo '<a href="./register_login/register.php">Inscrivez-vous</a><br>';

@@ -28,6 +28,7 @@ function usersprofilsearched($nickname){
     }
 
     // Bouton de follow/unfollow
+
     echo '<div id="divusers">';
     echo '@'.$nickname.'';
 
@@ -45,6 +46,35 @@ function usersprofilsearched($nickname){
     echo '});';
     echo '</script>';
     echo '</div>';
+
+    // Bouton pour ajouter des administrateurs si l'utilisateur courant est lui même administrateur et pour les supprimer si l'utilisateur courant est un super administrateur
+
+    if(isAdmin()){
+        if(!isAdminProfil($id)){
+            echo '<div>';
+            echo '<button id="adminbutton">Donner les droits administrateurs</button>';
+        }
+        else{
+            echo '<div>';
+            echo '<button id="adminbutton">Supprimer les droits administrateurs</button>';
+        }
+        echo '<script>';
+        echo "var btn = document.getElementById('adminbutton');";
+        echo "btn.addEventListener('click', function() {";
+        echo "document.location.href = './profil/adminmodification.php?id=";
+        echo $id;
+        echo "&profil=";
+        echo $nickname;
+        echo "';";
+        echo '});';
+        echo '</script>';
+        echo '</div>';
+    }
+    if(isset($_GET['adminerror'])){
+        echo '<div>';
+        echo '<p>Vous ne pouvez pas retirer les droits administrateurs de ce compte</p>';
+        echo '</div>';
+    }
 
     // Affichage de la description du compte
  
@@ -72,6 +102,25 @@ function usersprofilsearched($nickname){
         echo '</p>';
         echo '</div>';
         echo '<div>';
+
+        // ajoute le bouton de suppression sur la page de profil pour les administrateurs
+
+        if(isAdmin()){
+            echo '<button id="deletebutton'.$ligne['id'].'">Supprimer</button>';
+            echo '<script>';
+            echo 'var btn = document.getElementById("deletebutton'.$ligne['id'].'");';
+            echo "btn.addEventListener('click', function() {";
+            echo "document.location.href = './accueil_fonction/deletepost.php?postid=";
+            echo $ligne['id'];
+            echo "&profil=";
+            echo $nickname;
+            echo "';";
+            echo '});';
+            echo '</script>';
+        }
+
+        // affichage du bouton de like sur la page profil
+
         echo '<button id="likebutton'.$ligne['id'].'">Like</button>';
         echo '<script>';
         echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';

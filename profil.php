@@ -11,6 +11,8 @@ require_once "./profil/modif.php";
 require_once "./profil/usersprofil.php";
 require_once "./profil/isfollowing.php";
 require_once "./profil/profilheader.php";
+require_once "./profil/isadmin.php";
+require_once "./profil/issuperadmin.php";
 
 // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 

@@ -18,6 +18,17 @@ function timelinedisplay(){
         echo '</p>';
         echo '</div>';
         echo '<div>';
+        if($fetch['post_id']==$id || isAdmin()){
+            echo '<button id="deletebutton'.$fetch['id'].'">Supprimer</button>';
+            echo '<script>';
+            echo 'var btn = document.getElementById("deletebutton'.$fetch['id'].'");';
+            echo "btn.addEventListener('click', function() {";
+            echo "document.location.href = './accueil_fonction/deletepost.php?postid=";
+            echo $fetch['id'];
+            echo "';";
+            echo '});';
+            echo '</script>';
+        }
         echo '<button id="likebutton'.$fetch['id'].'">Like</button>';
         echo '<script>';
         echo 'var btn = document.getElementById("likebutton'.$fetch['id'].'");';
