@@ -94,17 +94,20 @@ function usersprofilsearched($nickname){
     $query3=mysqli_query($connexion,$req3);
     echo '<div id="divposts">';
     while($ligne=mysqli_fetch_assoc($query3)){
-        $postid=$ligne['post_id'];
         echo '<div>';
+        echo '<div>';
+        echo '<span>';
         echo '@'.$nickname;
+        echo '</span>';
+        echo '</div>';
+        echo '<div>';
         echo '<p>';
         echo $ligne['publication'];
         echo '</p>';
         echo '</div>';
-        echo '<div>';
 
         // ajoute le bouton de suppression sur la page de profil pour les administrateurs
-
+        echo '<div>';
         if(isAdmin()){
             echo '<button id="deletebutton'.$ligne['id'].'">Supprimer</button>';
             echo '<script>';
@@ -133,6 +136,27 @@ function usersprofilsearched($nickname){
         echo '});';
         echo '</script>';
         echo $ligne['likescount'];
+
+        // bouton de signalement
+        
+        
+        if(isReported($ligne['id'])){
+            echo '<p>Publication signalée, en cours de vérification.</p>';
+        }
+        else{
+            echo '<button id="reportbutton'.$ligne['id'].'">Signaler</button>';
+            echo '<script>';
+            echo 'var btn = document.getElementById("reportbutton'.$ligne['id'].'");';
+            echo "btn.addEventListener('click', function() {";
+            echo "document.location.href = './reports/reportpost.php?postid=";
+            echo $ligne['id'];
+            echo "&profil=";
+            echo $nickname;
+            echo "';";
+            echo '});';
+            echo '</script>';
+        }
+        echo '</div>';
         echo '</div>';
     }
     echo '</div>';

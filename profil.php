@@ -13,6 +13,7 @@ require_once "./follow/isfollowing.php";
 require_once "./profil/profilheader.php";
 require_once "./administration/isadmin.php";
 require_once "./administration/issuperadmin.php";
+require_once "./reports/isreported.php";
 
 // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 

@@ -1,6 +1,6 @@
 <?php
 
-// fonction la publication correspondant à l'id en argument
+// fonction retournant la publication correspondant à l'id en argument
 
 function postIdReference($postid){
     $connexion=connect();

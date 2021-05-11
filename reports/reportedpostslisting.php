@@ -11,7 +11,7 @@ function reportedPostListing(){
         $nickname=idreference($postid);        
         echo '<div>';
         echo '<div>';
-        echo '<span>Signalement de @'.$nickname.' de la publication de @'..'</span>';
+        echo '<span>Signalement de @'.$nickname.' de la publication de @'.nicknamepostidreference($fetch['post_id']).'</span>';
         echo '</div>';
         echo '<div>';
         echo '<p>';
@@ -19,25 +19,27 @@ function reportedPostListing(){
         echo '</p>';
         echo '</div>';
         echo '<div>';
+
+        // bouton pour supprimer la publication
+
         echo '<button id="deletebutton'.$fetch['id'].'">Supprimer la publication</button>';
         echo '<script>';
         echo 'var btn = document.getElementById("deletebutton'.$fetch['id'].'");';
         echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './reports/deletereportedpost.php?postid=";
-        echo $fetch['id'];
-        echo "&profil=";
-        echo $nickname;
+        echo "document.location.href = './deletereportedpost.php?postid=";
+        echo $fetch['post_id'];
         echo "';";
         echo '});';
         echo '</script>';
+
+        // bouton pour ignorer le signalement
+
         echo '<button id="ignorebutton'.$fetch['id'].'">Ignorer le signalement</button>';
         echo '<script>';
         echo 'var btn = document.getElementById("ignorebutton'.$fetch['id'].'");';
         echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './reports/ignorereportedpost.php?postid=";
-        echo $fetch['id'];
-        echo "&profil=";
-        echo $nickname;
+        echo "document.location.href = './ignorereportedpost.php?postid=";
+        echo $fetch['post_id'];
         echo "';";
         echo '});';
         echo '</script>';
