@@ -12,9 +12,10 @@ require_once "./accueil_fonction/accueilheader.php";
 require_once "./accueil_fonction/postform.php";
 require_once "./accueil_fonction/timelinedisplay.php";
 require_once "./accueil_fonction/idreference.php";
-require_once "./accueil_fonction/isliked.php";
-require_once "./profil/isadmin.php";
-require_once "./profil/issuperadmin.php";
+require_once "./likes/isliked.php";
+require_once "./administration/isadmin.php";
+require_once "./administration/issuperadmin.php";
+require_once "./reports/isreported.php";
 
 $_SESSION['page']="accueil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 
@@ -32,7 +33,9 @@ postform();
 
 timelinedisplay();
 
+echo '<div>';
 echo '<a href="profil.php">Voir mon profil</a>';
+echo '</div>';
 
 
 require_once "./include/footer.inc.php";

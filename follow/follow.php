@@ -2,7 +2,7 @@
 session_start();
 
 require_once "../connexion_db/connexion.php";
-require_once "./isfollowing.php";
+require_once "./follow/isfollowing.php";
 
 // fonction qui ajoute ou supprime la ligne correspond à un abonnement dans la base de donnée
 

@@ -19,3 +19,9 @@ header{
     margin-left: 5px;
     margin-bottom: 20px;
 }
+
+div.posts{
+    margin-bottom: 5px;
+    border: 1px #3e5c7e;
+    border-style: solid;
+}

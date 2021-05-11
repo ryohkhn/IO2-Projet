@@ -40,7 +40,7 @@ function usersprofilsearched($nickname){
     echo '<script>';
     echo "var btn = document.getElementById('followbutton');";
     echo "btn.addEventListener('click', function() {";
-    echo "document.location.href = './profil/follow.php?followed_id=";
+    echo "document.location.href = './follow/follow.php?followed_id=";
     echo $id;
     echo "';";
     echo '});';
@@ -61,7 +61,7 @@ function usersprofilsearched($nickname){
         echo '<script>';
         echo "var btn = document.getElementById('adminbutton');";
         echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './profil/adminmodification.php?id=";
+        echo "document.location.href = './administration/adminmodification.php?id=";
         echo $id;
         echo "&profil=";
         echo $nickname;
@@ -110,7 +110,7 @@ function usersprofilsearched($nickname){
             echo '<script>';
             echo 'var btn = document.getElementById("deletebutton'.$ligne['id'].'");';
             echo "btn.addEventListener('click', function() {";
-            echo "document.location.href = './accueil_fonction/deletepost.php?postid=";
+            echo "document.location.href = './delete/deletepost.php?postid=";
             echo $ligne['id'];
             echo "&profil=";
             echo $nickname;
@@ -125,7 +125,7 @@ function usersprofilsearched($nickname){
         echo '<script>';
         echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';
         echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './accueil_fonction/like.php?postid=";
+        echo "document.location.href = './likes/like.php?postid=";
         echo $ligne['id'];
         echo "&profil=";
         echo $nickname;

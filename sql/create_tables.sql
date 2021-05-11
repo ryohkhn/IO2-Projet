@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS relationships;
 DROP TABLE IF EXISTS postlikes;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS administrators;
+DROP TABLE IF EXISTS reports;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -64,6 +65,15 @@ CREATE TABLE IF NOT EXISTS administrators(
   admin BOOLEAN NOT NULL DEFAULT false,
   PRIMARY KEY (administrators_id),
   FOREIGN KEY (administrators_id) REFERENCES users (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS reports(
+  id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  reports_id INT(8) UNSIGNED NOT NULL,
+  post_id INT(8) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (reports_id) REFERENCES users (id),
+  FOREIGN KEY (post_id) REFERENCES post (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* il faudra mettre un superadmin après la création de l'un des comptes dans la base de donnée via cette requête

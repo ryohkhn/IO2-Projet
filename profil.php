@@ -9,10 +9,10 @@ require_once "./sessionattribute.php";
 require_once "./connexion_db/connexion.php";
 require_once "./profil/modif.php";
 require_once "./profil/usersprofil.php";
-require_once "./profil/isfollowing.php";
+require_once "./follow/isfollowing.php";
 require_once "./profil/profilheader.php";
-require_once "./profil/isadmin.php";
-require_once "./profil/issuperadmin.php";
+require_once "./administration/isadmin.php";
+require_once "./administration/issuperadmin.php";
 
 // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 

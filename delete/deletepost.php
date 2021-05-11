@@ -2,8 +2,8 @@
 session_start();
 
 require_once "../connexion_db/connexion.php";
-require_once "../profil/ispostowner.php";
-require_once "../profil/isadmin.php";
+require_once "./ispostowner.php";
+require_once "../administration/isadmin.php";
 
 // fonction supprimant le post dont la référence est dans l'adresse en $_GET
 
