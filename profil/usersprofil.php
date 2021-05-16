@@ -6,7 +6,7 @@ function usersprofilsearched($nickname){
     //  Redirection dans la page profil sans le get si jamais l'utilisateur a cherché son compte dans la barre de recherche
 
     if($nickname==$_SESSION['nickname']){
-        header('Location: ./profil.php');
+        header('Location: ./profil.php?nickname='.$nickname.'');
         exit;
     }
     
@@ -78,19 +78,41 @@ function usersprofilsearched($nickname){
 
     // Affichage de la description du compte
  
-    $req2="SELECT description FROM profil where profil_id=$id";
+    $req2="SELECT * FROM profil where profil_id=$id";
     $query2=mysqli_query($connexion,$req2);
     while($ligne=mysqli_fetch_assoc($query2)){
         echo '<div>';
         echo '<p>';
         echo $ligne['description'];
         echo '</p>';
+        if(isPPset($id)){
+            echo '<img src="profil/'.$ligne['pp_pic'].'">';
+        }else{
+            echo "cet utilisateur n'a pas de photo de profil :/";
+        }
         echo '</div>';
+    }
+
+    // affichage des animaux du compte 
+
+    $req="SELECT * FROM animal WHERE animal_id='$id'";
+    $query=mysqli_query($connexion,$req);
+    while($fetchquery=mysqli_fetch_assoc($query)){
+            
+        if(isPPsetAnimaux($fetchquery['id'])){
+            echo '<img src="profil/'.$fetchquery['pp_pic'].'">';
+        }else{
+            echo "cet Animal n'a pas de photo de profil :/";
+        }
+        echo "<br>";
+        echo $fetchquery['description'];
+        echo "<br>";
+        echo "<br>";
     }
 
     // Affichage des posts du compte
 
-    $req3="SELECT * FROM post WHERE post_id='$id'";
+    $req3="SELECT * FROM post WHERE post_id='$id' ORDER BY id DESC";
     $query3=mysqli_query($connexion,$req3);
     echo '<div id="divposts">';
     while($ligne=mysqli_fetch_assoc($query3)){
@@ -103,6 +125,7 @@ function usersprofilsearched($nickname){
         echo '<div>';
         echo '<p>';
         echo $ligne['publication'];
+        echo '<img src="'.$ligne['image_path'].'">';
         echo '</p>';
         echo '</div>';
 
@@ -166,6 +189,86 @@ function usersprofilsearched($nickname){
 
 function usersprofil(){
     echo $_SESSION['nickname'];
+    echo "<br>";
+
+    $id=$_SESSION['id'];
+    $connexion=connect();
+    $req="SELECT * FROM profil WHERE profil_id='$id'";
+    $query=mysqli_query($connexion,$req);
+    $fetchquery=mysqli_fetch_assoc($query);
+
+    if(isPPset($id)){
+        echo '<img src="./profil/'.$fetchquery['pp_pic'].'" alt="photo de profil">';
+    }else{
+        echo "cet utilisateur n'a pas de photo de profil :/";
+    }
+    echo "<br>";
+    echo $fetchquery['description'];
+    echo "<br>";
+    echo "<br>";
+
+    $connexion=connect();
+    $req="SELECT * FROM animal WHERE animal_id='$id'";
+    $query=mysqli_query($connexion,$req);
+    while($fetchquery=mysqli_fetch_assoc($query)){
+            
+        if(isPPsetAnimaux($fetchquery['id'])){
+            echo '<img src="./profil/'.$fetchquery['pp_pic'].'" alt="photo de profil animal">';
+        }else{
+            echo "cet Animal n'a pas de photo de profil :/";
+        }
+        echo "<br>";
+        echo $fetchquery['description'];
+        echo "<br>";
+        echo "<br>";
+    }
+
+    modif();
+
+
+    $req3="SELECT * FROM post WHERE post_id='$id' ORDER BY id DESC";
+    $query3=mysqli_query($connexion,$req3);
+    echo '<div id="divposts">';
+    while($ligne=mysqli_fetch_assoc($query3)){
+
+        // post 
+
+        echo '<div>';
+        echo '<div>';
+        echo '<p>';
+        echo $ligne['publication'];
+        echo '<img src="'.$ligne['image_path'].'">';
+        echo '</p>';
+        echo '</div>';
+
+
+        //bouton like 
+
+        echo '<button id="likebutton'.$ligne['id'].'">Like</button>';
+        echo '<script>';
+        echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';
+        echo "btn.addEventListener('click', function() {";
+        echo "document.location.href = './likes/like.php?postid=";
+        echo $ligne['id'];
+        echo "&profil=";
+        echo $_SESSION['nickname'];
+        echo "';";
+        echo '});';
+        echo '</script>';
+        echo $ligne['likescount'];
+
+        // bouton supprimer
+
+        echo '<button id="deletebutton'.$ligne['id'].'">Supprimer</button>';
+        echo '<script>';
+        echo 'var btn = document.getElementById("deletebutton'.$ligne['id'].'");';
+        echo "btn.addEventListener('click', function() {";
+        echo "document.location.href = './delete/deletepost.php?postid=";
+        echo $ligne['id'];
+        echo "';";
+        echo '});';
+        echo '</script>';
+    }
 }
 
 ?>

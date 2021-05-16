@@ -4,7 +4,11 @@
 
 function postform(){
     echo '<div id="publication">';
-    echo '<form action="./accueil.php" method="post">';
+    echo '<form action="./accueil.php" method="post" enctype="multipart/form-data">';
+    echo '<input type="hidden" name="MAX_FILE_SIZE" value="100000000000000" />';
+    echo '<input type="file" name="photo_post">';
+    echo '<label for="photo_post">Une photo ?</label>';
+    echo "<br>";
     echo '<textarea name="publication" id="publication" cols="30" rows="10" maxlength="200" required></textarea>';
     echo '<div>';
     echo '<input type="submit" value="Post">';

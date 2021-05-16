@@ -1,4 +1,4 @@
-<!--  Page d'erreur lorsque upload.php return false -->
+<!--  Page d'erreur lorsqu'il y a une erreur d'upload de post -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1><strong>veuillez upload une image de type .jpeg, .png, .jpg !</strong></h1>
-    <a href="../profil.php">Revenir aux modifications.</a>
+    <br>
+    <a href="../accueil.php">Revenir aux modifications.</a>
 </body>
 </html>

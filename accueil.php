@@ -25,17 +25,21 @@ if(!accountcheck()){
     echo '<a href="./register_login/login.php">Connectez-vous</a>';
     exit;
 }
+
 unsetregistervalues();
 
 accueilheader();
 publicationcheck();
-postform();
-
-timelinedisplay();
+postform(); //formulaire pour poster une publication
 
 echo '<div>';
 echo '<a href="profil.php">Voir mon profil</a>';
 echo '</div>';
+
+
+timelinedisplay();
+
+
 
 
 require_once "./include/footer.inc.php";

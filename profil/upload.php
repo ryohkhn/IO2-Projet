@@ -6,8 +6,9 @@
 function upload($files){
     $co=connect();
     $id=$_SESSION['id'];
-    $upload = "./uploads/";
-    $chemin = $upload . $files['name']; // faire modif poour unicité du nom
+    $name= $id. "PP" . $files['name']; // pour eviter que deux images aient le même nom et que le nom de l'image soit un commande
+    $upload = "uploads/";
+    $chemin = $upload . $name;
     $fileType = pathinfo($chemin,PATHINFO_EXTENSION);
     $allowTypes = array('jpg','png','jpeg');
     if(in_array($fileType, $allowTypes)){

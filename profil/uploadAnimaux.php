@@ -5,8 +5,8 @@
 // raisons d'échecs possibles : pas le bon type (png,jpeg,jpg), dossier dangereux(ne passe pas le test de move_uploaded_file() )
 function uploadAnimaux($files,$idAnimal){
     $co=connect();
-    $upload = "./uploads/";
-    $name= $idAnimal.$files['name']; // pour eviter que deux images aient le même nom
+    $upload = "uploads/";
+    $name= $idAnimal . "pp_animal". $files['name']; // pour eviter que deux images aient le même nom et que le nom de l'image soit un commande
     $chemin = $upload . $name;
     $fileType = pathinfo($chemin,PATHINFO_EXTENSION);
     $allowTypes = array('jpg','png','jpeg');

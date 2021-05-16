@@ -18,6 +18,7 @@ function timelinedisplay(){
         echo '<div>';
         echo '<p>';
         echo $fetch['publication'];
+        echo '<img src="'.$fetch['image_path'].'">';
         echo '</p>';
         echo '</div>';
         echo '<div>';

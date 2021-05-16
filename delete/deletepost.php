@@ -6,9 +6,10 @@ require_once "./ispostowner.php";
 require_once "../administration/isadmin.php";
 
 // fonction supprimant le post dont la référence est dans l'adresse en $_GET
-
+$surmapage=false;
 if(isset($_GET['postid'])){
     $postid=$_GET['postid'];
+    $surmapage=true;
     $connexion=connect();
 
     // vérification ne supprimant le post que s'il est son auteur ou s'il est administrateur
@@ -21,8 +22,12 @@ if(isset($_GET['postid'])){
 
 // test renvoyant sur la page du profil si la fonction a été appellée d'un certain profil
 
-if(isset($_GET['profil'])){
-    header('Location: ../profil.php?nickname='.$_GET['profil'].'');
+if(isset($_GET['profil']) || $surmapage){
+    if($surmapage){
+        header('Location: ../profil.php');
+    }else{
+        header('Location: ../profil.php?nickname='.$_GET['profil'].'');
+    }
 }
 else{
     header('Location: ../accueil.php');
