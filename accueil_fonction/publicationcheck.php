@@ -30,7 +30,7 @@ function publicationcheck(){
         $fileType = pathinfo($chemin,PATHINFO_EXTENSION);
         $allowTypes = array('jpg','png','jpeg');
         if(in_array($fileType, $allowTypes)){
-            if(move_uploaded_file($_FILES['photo_post']['tmp_name'], "$chemin")){
+            if(move_uploaded_file($_FILES['photo_post']['tmp_name'], "$chemin")){ 
                 $req="UPDATE post SET image_path='$chemin' WHERE id='$idlastpost';";
                 mysqli_query($connexion,$req);
                 header('Location: ./accueil.php?success=true');
