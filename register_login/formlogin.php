@@ -1,31 +1,39 @@
 <?php
 
 function formlogin(){
-    echo '<div>';
-    echo '<h1 id="formtitle">S\'identifier</h1>';
-    echo '<form action="./login.php" method="post">';
-    echo '<label for="nickname">Nom d\'utilisateur </label>';
-    echo '<input type="text" name="nickname" id="nickname" required><br><br>';
-    echo '<label for="password">Mot de passe </label>';
-    echo '<input type="password" name="password" id="password" required><br><br>';
-    echo '<input type="submit">';
-    echo '</form><br>';
-    echo '<a href="./register.php">Créer votre compte</a>';
+    echo '<div class="split left">';
+    echo '<div class="centeredpageinfo">';
+    echo '<p>welcome</p>';
+    echo '<h1>Login to your personnal account</h1>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="split right">';
+    echo '<div class="centeredform">';
+    echo '<form action="./login.php" method="post" class="formloginregister">';
+    echo '<input type="text" name="nickname" class="forminput" placeholder="Nom d\'utilisateur" required><br>';
+    echo '<input type="password" name="password" class="forminput" placeholder="Mot de passe" required><br>';
+    echo '<input type="submit" class="firstformbutton" value="Login">';
+    echo '</form>';
+    echo '</div>';
     echo '</div>';
 }
 
 function formloginfail(){
-    echo '<div>';
-    echo '<h1 id="formtitle">S\'identifier</h1>';
-    echo '<form action="./login.php" method="post">';
-    echo '<h3>Mauvaise combinaison nom d\'utilisateur/mot de passe</h3>';
-    echo '<label for="nickname">Nom d\'utilisateur </label>';
-    echo '<input type="text" name="nickname" id="nickname" required><br><br>';
-    echo '<label for="password">Mot de passe </label>';
-    echo '<input type="password" name="password" id="password" required><br><br>';
-    echo '<input type="submit">';
+    echo '<div class="split left">';
+    echo '<div class="centeredpageinfo">';
+    echo '<p>welcome</p>';
+    echo '<h1>Login to your personnal account</h1>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="split right">';
+    echo '<div class="centeredform">';
+    echo '<form action="./login.php" method="post" class="formloginregister">';
+    echo '<input type="text" name="nickname" class="forminput" placeholder="Nom d\'utilisateur" required><br>';
+    echo '<input type="password" name="password" class="forminput" placeholder="Mot de passe" required><br>';
+    echo '<p class="formerror">Mauvaise combinaison nom d\'utilisateur/mot de passe</p><br>';
+    echo '<input type="submit" class="firstformbutton" value="Go">';
     echo '</form><br>';
-    echo '<a href="./register.php">Créer votre compte</a>';
+    echo '</div>';
     echo '</div>';
 }
 

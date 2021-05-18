@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+
+body{
+    font-family: 'Varela', sans-serif;
+    background-color: #212F3D;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+.forminput{
+    font-family: 'Varela', sans-serif;
+    width: 300px;
+    background:#2a3d50;
+    color: white;
+    padding: 18px 24px;
+    margin: 12px;
+    border: 2px solid #3c4f63;
+    border-radius: 5px;
+}
+
+.forminput:focus, .forminputselect:focus{
+    outline: none;
+}
+
+.formcomplement{
+    font-family: 'Varela', sans-serif;
+    width: 300px;
+    background: #2a3d50;
+    resize: none;
+    color: white;
+    padding: 18px 24px;
+    margin: 12px;
+    border: 2px solid #3c4f63;
+    border-radius: 5px;
+}
+
+.formloginregister{
+    width: 500px;
+    height: 500px;
+}
+
+.formloginregisteranimal{
+    width: 500px;
+}
+
+.forminputselect{
+    width: 150px;
+    background:#2a3d50;
+    color: white;
+    padding: 14px 20px;
+    margin: 12px;
+    border: 2px solid #3c4f63;
+    border-radius: 5px;
+}
+
+::placeholder{
+    color: rgb(204, 203, 203);
+    font-style: italic;
+}
+
+.split{
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 10;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.centeredpageinfo{
+    top: 20%;
+    left: 40%;
+    text-align: left;
+    position: relative;
+}
+
+.centeredform{
+    top: 20%;
+    left: 15%;
+    text-align: left;
+    position: relative;
+}
+
+.centeredpageinfo h1{
+    width: 30%;
+}
+
+.centeredpageinfo p{
+    text-align: left;
+}
+
+.left{
+    left: 0;
+}
+
+.right{
+    right: 0;
+}
+
+.firstformbutton{
+    background-color: #fee3ae;
+    border: none;
+    color: black;
+    padding: 18px 24px;
+    margin: 12px;
+    border-radius: 5px;
+}
+
+.header_register, .header_login{
+    margin-top: 2%;
+}
+
+.header_login .link_signup:link, .header_login .link_signup:visited, .header_login .link_signup:hover, .header_login .link_signup:active{
+    text-decoration: none;
+    color: white;
+}
+
+.header_login .link_login:link, .header_login .link_login:visited, .header_login .link_login:hover, .header_login .link_login:active{
+    text-decoration: none;
+    color: #fee3ae;
+}
+
+.header_register .link_signup:link, .header_register .link_signup:visited, .header_register .link_signup:hover, .header_register .link_signup:active{
+    text-decoration: none;
+    color: #fee3ae;
+}
+
+.header_register .link_login:link, .header_register .link_login:visited, .header_register .link_login:hover, .header_register .link_login:active{
+    text-decoration: none;
+    color: white;
+}
+
+.header_login .span_signup{
+    margin-left: 20%;
+    background-color: #2a3d50;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.header_login .span_login{
+    margin-left: 38%;
+}
+
+.header_register .span_login{
+    margin-left: 20%;
+    background-color: #2a3d50;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.header_register .span_signup{
+    margin-left: 38%;
+}
+
+.formerror{
+    margin-left: 2%;
+    color: rgb(204, 203, 203);
+}
+
+.success{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.divloginanchor, .divregisteranchor{
+    margin-top: 5%;
+}
+
+.successanchor{
+    background-color: #fee3ae;
+    border: none;
+    color: black;
+    padding: 14px 20px;
+    margin: 12px;
+    border-radius: 5px;;
+}
+
+
+
+#adminline{
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+div.posts{
+    margin-bottom: 5px;
+    border: 1px #3e5c7e;
+    border-style: solid;
+}

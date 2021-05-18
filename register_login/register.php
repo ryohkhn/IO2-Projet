@@ -3,7 +3,7 @@
 session_start();
 
 $title='Page d\'enregistrement';
-$style='../style/styleformregister.css';
+$style='../style/styledark.css';
 require_once '../include/header.inc.php';
 require_once './registercheck.php';
 require_once './formregister.php';
@@ -15,6 +15,13 @@ require_once '../sessionattribute.php';
 require_once './animalcheck.php';
 require_once './successregister.php';
 require_once './nicknamecheckdb.php';
+require_once './accountcheck.php';
+require_once './preregistercheck.php';
+
+if(!preregistercheck() && !accountcheck()){
+    include "./headerregister.html";
+}
+
 
 
 if(registercheck()){

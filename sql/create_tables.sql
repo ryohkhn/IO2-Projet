@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS post(
   id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   publication varchar(200) NOT NULL,
   post_id INT(8) UNSIGNED NOT NULL,
-  image_path VARCHAR(200) NOT NULL,
+  image_path VARCHAR(200) NOT NULL DEFAULT '',
   likescount INT(8) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
   FOREIGN KEY (post_id) REFERENCES users (id)

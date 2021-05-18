@@ -6,7 +6,7 @@ function usersprofilsearched($nickname){
     //  Redirection dans la page profil sans le get si jamais l'utilisateur a cherché son compte dans la barre de recherche
 
     if($nickname==$_SESSION['nickname']){
-        header('Location: ./profil.php?nickname='.$nickname.'');
+        header('Location: ./profil.php');
         exit;
     }
     

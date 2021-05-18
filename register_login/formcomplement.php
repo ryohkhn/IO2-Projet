@@ -3,16 +3,19 @@
 // formulaire pour la description du profil et le nombre d'animaux de l'utilisateur
 
 function formcomplement(){
-    echo '<div>';
-    echo '<h2>Quelques informations supplémentaires</h2>';
-    echo '<form action="./register.php" method="post">';
-    echo '<label for="description">Description de votre profil</label><br>';
-    echo '<textarea name="description" id="description" cols="35" rows="8" maxlength="200"></textarea><br>';
-    //echo '<input type="text" name="description" id="description" maxlength="200"><br>';
-    echo '<label for="quantity">Combien d\'animaux avez-vous ?</label><br>';
-    echo '<input type="number" name="quantity" id="quantity" min="0" required><br><br>';
-    echo '<input type="submit">';
+    echo '<div class="split left">';
+    echo '<div class="centeredpageinfo">';
+    echo '<h1>Quelques informations supplémentaires</h2>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="split right">';
+    echo '<div class="centeredform">';
+    echo '<form action="./register.php" method="post" class="formloginregister">';
+    echo '<textarea name="description" cols="35" rows="8" maxlength="200" class="formcomplement" placeholder="Description de votre profil"></textarea><br>';
+    echo '<input type="number" name="quantity" id="quantity" min="0" max="10" class="forminput" placeholder="Combien d\'animaux avez-vous ?"required><br><br>';
+    echo '<input type="submit" class="firstformbutton" value="Next">';
     echo '</form>';
+    echo '</div>';
     echo '</div>';
 }
 

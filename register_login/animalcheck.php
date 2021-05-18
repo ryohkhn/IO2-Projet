@@ -27,6 +27,7 @@ function animalcheck(){
             }
             return true;
         }
+        formanimal($_POST['quantity']);
         return false;
     }
     return true;

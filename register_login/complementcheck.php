@@ -19,7 +19,6 @@ function complementcheck(){
                 successregister();
                 return false;
             }else{
-                formanimal($_POST['quantity']);
                 return true;
             }
         }
