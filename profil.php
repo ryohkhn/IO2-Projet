@@ -2,7 +2,7 @@
 
 session_start();
 $title='Profil';
-$style='./style/styleprofil.css';
+$style='./style/styledark.css';
 require_once "./include/header.inc.php";
 require_once "./register_login/accountcheck.php";
 require_once "./sessionattribute.php";

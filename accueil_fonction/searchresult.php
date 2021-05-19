@@ -1,7 +1,7 @@
 <?php
 
 $title='Résultat de la recherche';
-$style='../style/stylesearchresult.css';
+$style='../style/styledark.css';
 require_once "../include/header.inc.php";
 require_once "../connexion_db/connexion.php";
 

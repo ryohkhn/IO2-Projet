@@ -8,6 +8,10 @@ function timelinedisplay(){
     $req="SELECT * FROM post WHERE post_id IN (SELECT followed_id FROM relationships WHERE follower_id='$id') ORDER BY id DESC";
     $query=mysqli_query($connexion,$req);
     
+    echo '<div class="splithomeright">';
+
+    postform(); //formulaire pour poster une publication
+
     while($fetch=mysqli_fetch_assoc($query)){
         $postid=$fetch['post_id'];
         $nickname=idreference($postid);
@@ -18,7 +22,7 @@ function timelinedisplay(){
         echo '<div>';
         echo '<p>';
         echo $fetch['publication'];
-        echo '<img src="'.$fetch['image_path'].'">';
+        echo '<img src="'.$fetch['image_path'].'" class="imagedisplay">';
         echo '</p>';
         echo '</div>';
         echo '<div>';
@@ -52,13 +56,7 @@ function timelinedisplay(){
 
         // bouton de signalement
 
-        if(isReported($fetch['id'])){
-            echo '</div>';
-            echo '<div>';
-            echo '<p>Publication signalée, en cours de vérification.</p>';
-            echo '</div>';
-        }
-        else{
+        if(!isReported($fetch['id'])){
             echo '<button id="reportbutton'.$fetch['id'].'">Signaler</button>';
             echo '<script>';
             echo 'var btn = document.getElementById("reportbutton'.$fetch['id'].'");';
@@ -72,6 +70,8 @@ function timelinedisplay(){
         echo '</div>';
         echo '</div>';
     }
+    echo '</div>';
+    echo '</div>';
 }
 
 

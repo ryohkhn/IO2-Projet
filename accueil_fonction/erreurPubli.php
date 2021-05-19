@@ -4,7 +4,7 @@
 <head>
 <title>Page d'erreur</title>
 <meta charset="utf-8"/>
-<link rel="stylesheet" href="../style/styleaccueil.css" type="text/css"/>
+<link rel="stylesheet" href="../style/styledark.css" type="text/css"/>
 </head>
 <body>
     <h1><strong>veuillez upload une image de type .jpeg, .png, .jpg !</strong></h1>

@@ -2,7 +2,7 @@
 session_start();
 
 $title='Page d\'enregistrement';
-$style='./style/styleaccueil.css';
+$style='./style/styledark.css';
 require_once "./include/header.inc.php";
 require_once "./register_login/accountcheck.php";
 require_once "./accueil_fonction/unsetregistervalues.php";
@@ -28,15 +28,15 @@ if(!accountcheck()){
 
 unsetregistervalues();
 
-accueilheader();
+//accueilheader();
 publicationcheck();
-postform(); //formulaire pour poster une publication
 
-echo '<div>';
+
+/*echo '<div>';
 echo '<a href="profil.php">Voir mon profil</a>';
-echo '</div>';
+echo '</div>';*/
 
-
+require "./accueil_fonction/leftbar.php";
 timelinedisplay();
 
 

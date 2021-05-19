@@ -3,7 +3,7 @@
 //affiche le formulaire de modification + appelle les fonctions pour rentrer les données dans la database et dans l'espace de stockage
 session_start();
 $title='Profil';
-$style='../style/styleaccueil.css';
+$style='../style/styledark.css';
 require_once "../include/header.inc.php";
 require_once "../connexion_db/connexion.php";
 require_once "../sessionattribute.php";

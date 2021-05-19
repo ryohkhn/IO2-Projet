@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title='Page de deconnexion';
-$style='./style/styledisconnected.css';
+$style='./style/styledark.css';
 require_once "../include/header.inc.php";
 
 session_unset();
