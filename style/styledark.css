@@ -10,6 +10,10 @@ a{
     text-decoration: none;
 }
 
+pre{
+    font-family: 'Varela', sans-serif;
+}
+
 .forminput{
     font-family: 'Varela', sans-serif;
     width: 300px;
@@ -58,7 +62,6 @@ a{
 
 ::placeholder{
     color: rgb(204, 203, 203);
-    font-style: italic;
 }
 
 .split{
@@ -194,7 +197,7 @@ a{
 .splithomeright{
     padding: 20px;
     height: auto;
-    width: auto;
+    width: 70%;
     border-left: 1px solid #3e5c7e;
 }
 
@@ -211,6 +214,21 @@ a{
     border-radius: 25%;    
 }
 
+.timelineprofilpic{
+    float: left;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;  
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.timelinepicname{
+    display: flex;
+    flex-direction: column;
+}
+
 .homeprofilpic{
     margin-top: 20%;
     margin-right: auto;
@@ -221,8 +239,8 @@ a{
 .imagedisplay{
     height: auto;
     width: auto;
-    max-width: 1200px;
-    max-height: auto;
+    max-width: 800px;
+    max-height: 800px;
 }
 
 .homenickname{
@@ -276,12 +294,109 @@ a{
     padding-left:  12%;
 }
 
-div.posts{
+.postformsendbutton{
+    background-color: #fee3ae;
+    border: none;
+    color: black;
+    padding: 14px 18px;
+    margin: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#photoinput{
+    display: none;
+}
+
+.postform{
+    margin-top: 1%;
+}
+
+.imageinput{
+    width: 30px;
+    cursor: pointer;
+}
+
+.postformbuttons{
+    margin-left: 12px;
+    width: 370px;
+    align-items: center;
+    justify-content:space-between;
+    display: flex;
+}
+
+#searchbar{
+    background-image:url("../images/searchlogo.png "); 
+    background-repeat: no-repeat; 
+    background-position: 9px 9px;
+    background-size: 2em;
+    text-indent: 30px;
+    width: 20%;
+    background-color: #fee3ae;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 18px;
+    margin: 12px;
+    border-radius: 50px;
+}
+
+.searchicon{
+    padding-left: 30px;
+    text-align: center;
+}
+
+.postdisplay{
+    width: 60%;
+    word-wrap: break-word;
+}
+
+.publicationbuttons{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    margin-right: 40%;
+}
+
+.buttoncontainer{
+    display: flex;
+    align-items: center;
+}
+
+.buttoncontainer div{
+    padding: 5px;
+}
+
+.buttoncontainer p{
+    margin-top: 12px;
+}
+
+.deletebuttonchild:link, .deletebuttonchild:visited, .deletebuttonchild:hover, .deletebuttonchild:active{
+    color: white;
+}
+
+.likebuttonchild:link, .likebuttonchild:visited, .likebuttonchild:hover, .deletebuttonchild:active{
+    color: red;
+}
+
+.reportbuttonchild:link, .reportbuttonchild:visited, .reportbuttonchild:hover, .deletebuttonchild:active{
+    color: white;
+}
+
+.timelinenickname{
+    color: #fee3ae;
+}
+
+.posts{
+    display: flex;
     padding: 20px;
     margin-bottom: 1%;
     margin-top: 1%;
     margin-right: 1%;
     margin-left: 1%;
+    min-width: 100%;
+    width: 100%;
     border: 1px #3e5c7e;
     border-style: solid;
+    flex-direction: column;
 }

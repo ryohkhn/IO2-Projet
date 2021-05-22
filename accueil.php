@@ -28,13 +28,7 @@ if(!accountcheck()){
 
 unsetregistervalues();
 
-//accueilheader();
 publicationcheck();
-
-
-/*echo '<div>';
-echo '<a href="profil.php">Voir mon profil</a>';
-echo '</div>';*/
 
 require "./accueil_fonction/leftbar.php";
 timelinedisplay();

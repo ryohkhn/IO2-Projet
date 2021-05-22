@@ -3,20 +3,27 @@
 // formulaire de la page d'accueil pour faire une publication
 
 function postform(){
-    echo '<div id="publication">';
+    echo '<div class="postform">';
     echo '<form action="./accueil.php" method="post" enctype="multipart/form-data">';
     echo '<input type="hidden" name="MAX_FILE_SIZE" value="100000000000000" />';
-    echo '<input type="file" name="photo_post">';
-    echo '<label for="photo_post">Une photo ?</label>';
-    echo "<br>";
-    echo '<textarea name="publication" id="publication" cols="30" rows="10" maxlength="200" required></textarea>';
+    echo '<textarea name="publication" cols="30" rows="10" maxlength="200" class="formcomplement" placeholder="Quoi de neuf ?" required></textarea>';
+    echo '<div class="postformbuttons">';
     echo '<div>';
-    echo '<input type="submit" value="Post">';
+    echo '<label for="photoinput">';
+    echo '<img src="./images/imagelogo.png" alt="imagelogo" class="imageinput">';
+    echo '<input type="file" name="photo_post" id="photoinput">';
+    echo '</label>';
+    echo '</div>';
+    if(isset($_GET['success']) && $_GET['success']=='true'){
+        echo '<div>';
+        echo '<p>Publication envoyée</p>';
+        echo '</div>';
+    }
+    echo '<div>';
+    echo '<input type="submit" value="Envoyer" class="postformsendbutton">';
+    echo '</div>';
     echo '</div>';
     echo '</form>';
-    if(isset($_GET['success']) && $_GET['success']=='true'){
-        echo '<h5>Publication envoyée</h5>';
-    }
     echo '</div>';
 }
 

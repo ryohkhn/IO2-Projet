@@ -74,17 +74,21 @@
                 echo '</div>';
             }
             ?>
+            <div class="barlinksdiv"> 
+                <a href="./accueil_fonction/logout.php" class="barlinks"><i class="material-icons">power_settings_new</i></a>
+                <a href="./accueil_fonction/logout.php" class="barlinks"> Déconnexion</a>
+            </div>
         </div>
-        <div>
         <?php
         if(isAdmin()){
+            echo '<div>';
             if(isSuperAdmin()){
                 echo '<p class="baradminmessage">Compte super administrateur</p>';
             }
             else{
-                echo '<p class="baradminmessage>Compte administrateur</p>';
+                echo '<p class="baradminmessage">Compte administrateur</p>';
             }
+            echo '</div>';
         }
         ?>
-        </div>
     </header>

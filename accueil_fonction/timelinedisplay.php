@@ -5,71 +5,97 @@
 function timelinedisplay(){
     $connexion=connect();
     $id=$_SESSION['id'];
-    $req="SELECT * FROM post WHERE post_id IN (SELECT followed_id FROM relationships WHERE follower_id='$id') ORDER BY id DESC";
+    $req="SELECT * FROM post WHERE post_id IN (SELECT followed_id FROM relationships WHERE follower_id='$id') ORDER BY id DESC LIMIT 5";
     $query=mysqli_query($connexion,$req);
-    
+
     echo '<div class="splithomeright">';
+    accueilheader();
+    echo '<div>';
 
     postform(); //formulaire pour poster une publication
 
     while($fetch=mysqli_fetch_assoc($query)){
         $postid=$fetch['post_id'];
         $nickname=idreference($postid);
+
+        $req2="SELECT * FROM profil WHERE profil_id='$postid'";
+        $query2=mysqli_query($connexion,$req2);
+        $fetchquery=mysqli_fetch_assoc($query2);
+        
+
         echo '<div class="posts">';
+        echo '<div class="timelinepicname">';
         echo '<div>';
-        echo '<span>@'.$nickname.'</span>';
+        echo '<a href="./profil.php?nickname='.$nickname.'"><img src="./profil/'.$fetchquery['pp_pic'].'" alt="profil_pic" class="timelineprofilpic"></a>';
+        echo '<div>';
+        echo '<a href="./profil.php?nickname='.$nickname.'" class="timelinenickname">@'.$nickname.'</a>';
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
         echo '<div>';
-        echo '<p>';
-        echo $fetch['publication'];
-        echo '<img src="'.$fetch['image_path'].'" class="imagedisplay">';
-        echo '</p>';
-        echo '</div>';
         echo '<div>';
+        echo '<pre class="postdisplay">'.$fetch['publication'].'</pre>';
+        echo '</div>';
+        if($fetch['image_path']!=null){
+            echo '<div>';
+            echo '<img src="'.$fetch['image_path'].'" class="imagedisplay">';
+            echo '</div>';
+        }
+        echo '</div>';
+        echo '<div class="publicationbuttons">';
 
         // bouton de suppression
 
         if($fetch['post_id']==$id || isAdmin()){
-            echo '<button id="deletebutton'.$fetch['id'].'">Supprimer</button>';
-            echo '<script>';
-            echo 'var btn = document.getElementById("deletebutton'.$fetch['id'].'");';
-            echo "btn.addEventListener('click', function() {";
-            echo "document.location.href = './delete/deletepost.php?postid=";
-            echo $fetch['id'];
-            echo "';";
-            echo '});';
-            echo '</script>';
+            ?>
+            <div class="buttoncontainer">
+                <div>
+                    <a href="./delete/deletepost.php?postid=<?php echo $fetch['id'] ?>" class="deletebuttonchild">
+                        <i class="material-icons md-light">delete</i>
+                    </a>
+                </div>
+                <div>
+                    <p>Supprimer</p>
+                </div>
+            </div>
+            <?php
         }
 
         // bouton de like/unlike
+        ?>
+        <div class="buttoncontainer">
+            <div>
+                <a href="./likes/like.php?postid=<?php echo $fetch['id'] ?>" class="likebuttonchild">
+                    <i class="material-icons md-light">favorite</i>
+                </a>
+            </div>
+            <div>
+                <p><?php echo $fetch['likescount']; ?></p>
+            </div>
+        </div>
 
-        echo '<button id="likebutton'.$fetch['id'].'">Like</button>';
-        echo '<script>';
-        echo 'var btn = document.getElementById("likebutton'.$fetch['id'].'");';
-        echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './likes/like.php?postid=";
-        echo $fetch['id'];
-        echo "';";
-        echo '});';
-        echo '</script>';
-        echo $fetch['likescount'];
+        <?php
 
         // bouton de signalement
 
         if(!isReported($fetch['id'])){
-            echo '<button id="reportbutton'.$fetch['id'].'">Signaler</button>';
-            echo '<script>';
-            echo 'var btn = document.getElementById("reportbutton'.$fetch['id'].'");';
-            echo "btn.addEventListener('click', function() {";
-            echo "document.location.href = './reports/reportpost.php?postid=";
-            echo $fetch['id'];
-            echo "';";
-            echo '});';
-            echo '</script>';
+            ?>
+            <div class="buttoncontainer">
+                <div>
+                    <a href="./reports/reportpost.php?postid=<?php echo $fetch['id'] ?>" class="reportbuttonchild">
+                        <i class="material-icons md-light">report_problem</i>
+                    </a>
+                </div>
+                <div>
+                    <p>Signaler</p>
+                </div>
+            </div>
+            <?php
         }
         echo '</div>';
         echo '</div>';
     }
+    echo '</div>';
     echo '</div>';
     echo '</div>';
 }
