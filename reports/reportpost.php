@@ -3,6 +3,7 @@ session_start();
 
 require_once "../connexion_db/connexion.php";
 require_once "./isreported.php";
+require_once "../register_login/accountcheck.php";
 
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
