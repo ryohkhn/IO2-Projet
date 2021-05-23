@@ -19,16 +19,24 @@ require_once "./reports/isreported.php";
 
 $_SESSION['page']="accueil.php"; // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 
+// On verifie si l'utilisateur est connecté
+
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
-    echo '<a href="./register_login/register.php">Inscrivez-vous</a><br>';
-    echo '<a href="./register_login/login.php">Connectez-vous</a>';
+    echo '<a href="./register_login/register.php" class="warningaccountcheck">Inscrivez-vous</a>';
+    echo '<a href="./register_login/login.php" class="warningaccountcheck">Connectez-vous</a>';
     exit;
 }
 
+// fonction pour unset les valeurs créées lors de l'inscription
+
 unsetregistervalues();
 
+// fonction vérifiant si un post a été envoyé via le formulaire
+
 publicationcheck();
+
+// affichage de la barre latérale et des posts
 
 require "./accueil_fonction/leftbar.php";
 timelinedisplay();

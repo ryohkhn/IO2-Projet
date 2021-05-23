@@ -1,15 +1,15 @@
 <?php
 
-// fonction d'affichage de toutes les publications des comptes que l'utilisateur courant suit, dont ses post. Affichage du bouton de suppression et du compteur de likes
+// fonction d'affichage de toutes les publications des comptes que l'utilisateur courant suit, dont ses posts. Affichage du bouton de suppression et du compteur de likes
 
 function timelinedisplay(){
     $connexion=connect();
     $id=$_SESSION['id'];
-    $req="SELECT * FROM post WHERE post_id IN (SELECT followed_id FROM relationships WHERE follower_id='$id') ORDER BY id DESC LIMIT 5";
+    $req="SELECT * FROM post WHERE post_id IN (SELECT followed_id FROM relationships WHERE follower_id='$id') ORDER BY id DESC LIMIT 15";
     $query=mysqli_query($connexion,$req);
 
     echo '<div class="splithomeright">';
-    accueilheader();
+    accueilheader("./accueil_fonction/searchresult.php");
     echo '<div>';
 
     postform(); //formulaire pour poster une publication

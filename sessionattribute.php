@@ -1,5 +1,7 @@
 <?php
 
+// fonction attribuant les valeurs de sessions lors de la connexion et de l'inscription
+
 function sessionattribute($nickname){
     $connexion=connect();
     $req="SELECT id FROM users WHERE nickname='$nickname'";

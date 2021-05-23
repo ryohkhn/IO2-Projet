@@ -10,7 +10,7 @@ function publicationcheck(){
 
 
     if(isset($_POST['publication']) and !empty($_FILES['photo_post']['tmp_name'])){
-        //cas oui il y a une description et une image
+        //cas ou il y a une description et une image
         $publication=$_POST['publication'];
         $publication=htmlspecialchars($publication);
         $publication=mysqli_real_escape_string($connexion,$publication);

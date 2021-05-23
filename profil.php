@@ -24,8 +24,8 @@ $_SESSION['page']="profil.php";
 
 if(!accountcheck()){
     echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
-    echo '<a href="./register_login/register.php">Inscrivez-vous</a><br>';
-    echo '<a href="./register_login/login.php">Connectez-vous</a>';
+    echo '<a href="./register_login/register.php" class="warningaccountcheck">Inscrivez-vous</a><br>';
+    echo '<a href="./register_login/login.php" class="warningaccountcheck">Connectez-vous</a>';
     exit;
 }
 

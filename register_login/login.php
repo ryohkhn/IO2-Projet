@@ -13,6 +13,10 @@ require_once "./formlogin.php";
 require_once "../sessionattribute.php";
 require_once "./prelogincheck.php";
 
+// page traitant les informations du formulaire de login
+
+// permet de ne pas afficher le header sur la page après avoir passé le premier formulaire
+
 if(!prelogincheck() && !accountcheck()){
     include_once "./headerlogin.html";
 }

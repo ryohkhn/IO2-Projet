@@ -1,6 +1,6 @@
 <?php
 
-// fonction retournant le nom de l'utilisateur correspond à la publication en argumant
+// fonction retournant le nom de l'utilisateur correspond à la publication en argument
 
 function nicknamePostIdReference($postid){
     $connexion=connect();

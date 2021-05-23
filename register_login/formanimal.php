@@ -1,6 +1,6 @@
 <?php
 
-// formulaire affichant un nombre demandé de select avec une description pour chaque animaux
+// formulaire affichant un nombre demandé de select avec une description pour chaque animal
 
 function formanimal($quantity){
     $heightform=370;

@@ -1,6 +1,6 @@
 <?php
 
-// fonction vérifiant si le post a été report par l'utilisateur courant
+// fonction booléenne vérifiant si le post a été signalé par l'utilisateur courant
 
 function isReported($postid){
     $connexion=connect();

@@ -1,6 +1,6 @@
 <?php
 
-// fonction vérifiant si un post dont le numéro est en argument est déjà liké par l'utilisateur courant
+// fonction booléenne vérifiant si un post dont le numéro est en argument est déjà liké par l'utilisateur courant
 
 function isLiked($publicationid){
     $connexion=connect();

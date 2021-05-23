@@ -4,7 +4,14 @@ session_start();
 require_once "../connexion_db/connexion.php";
 require_once "./isreported.php";
 
-// fonction envoyant le signalement à la base de donnée pour les administrateurs
+if(!accountcheck()){
+    echo '<h2>Vous devez posséder un compte pour accéder à cette page</h2>';
+    echo '<a href="./register_login/register.php" class="warningaccountcheck">Inscrivez-vous</a>';
+    echo '<a href="./register_login/login.php" class="warningaccountcheck">Connectez-vous</a>';
+    exit;
+}
+
+// page envoyant le signalement à la base de donnée pour les administrateurs
 
 if(isset($_GET['postid'])){    
     $connexion=connect();
