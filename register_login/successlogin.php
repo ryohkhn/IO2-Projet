@@ -1,5 +1,7 @@
 <?php
 
+// Fonction affichant la page de réussite de connexion
+
 function successlogin(){
     echo '<div class="success">';
     echo '<div>';

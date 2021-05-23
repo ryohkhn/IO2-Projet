@@ -1,4 +1,4 @@
-<div class="homecontainer">
+<div class="homecontainer"> <!-- fichier affichant une barre avec les informations du compte, ainsi que des boutons pour rediriger vers différentes pages-->
     <header class="splithomeleft">
         <div class="homeprofilpic">
             <?php

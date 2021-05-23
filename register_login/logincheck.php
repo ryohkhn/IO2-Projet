@@ -1,5 +1,7 @@
 <?php
 
+// fonction vérifiant les informations reçues en $_POST pour la connexion
+
 function logincheck(){
     if(isset($_POST['nickname']) && isset($_POST['password'])){
         $connexion=connect();

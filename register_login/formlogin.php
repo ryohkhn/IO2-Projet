@@ -1,5 +1,7 @@
 <?php
 
+// formulaire d'identification
+
 function formlogin(){
     echo '<div class="split left">';
     echo '<div class="centeredpageinfo">';

@@ -1,6 +1,6 @@
 <?php
 
-// fonction d'affichage pour la fin de création du compte
+// Fonction affichant la page de réussite d'enregistrement
 
 function successregister(){
     echo '<div class="success">';

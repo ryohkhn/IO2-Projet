@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../style/styledark.css" type="text/css"/>
 </head>
 <body>
-    <h1><strong>veuillez upload une image de type .jpeg, .png, .jpg !</strong></h1>
+    <h1><strong>Veuillez upload une image de type .jpeg, .png, .jpg !</strong></h1>
     <br>
     <a href="../accueil.php">Revenir aux modifications.</a>
 </body>

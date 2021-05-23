@@ -1,7 +1,9 @@
 <?php
 session_start();
-$title='Page de deconnexion';
-$style='../style/styledark.css';
+// fichier supprimant les variables de session pour se déconnecter
+
+$title='Page de déconnexion';
+$style='./style/styledark.css';
 require_once "../include/header.inc.php";
 
 session_unset();

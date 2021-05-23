@@ -12,6 +12,7 @@ if(isset($_GET['postid'])){
     $publication_id=$_GET['postid'];
 
     // récupération du nombre de likes du post
+    
     $req="SELECT likescount FROM post WHERE id='$publication_id'";
     $query=mysqli_query($connexion,$req);
     $row=mysqli_fetch_array($query);

@@ -18,11 +18,13 @@ require_once './nicknamecheckdb.php';
 require_once './accountcheck.php';
 require_once './preregistercheck.php';
 
+// page traitant les informations du formulaire d'enregistrement
+
+// permet de ne pas afficher le header sur la page après avoir passé le premier formulaire
+
 if(!preregistercheck() && !accountcheck()){
     include "./headerregister.html";
 }
-
-
 
 if(registercheck()){
     if(complementcheck()){

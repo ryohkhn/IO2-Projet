@@ -387,6 +387,11 @@ pre{
     color: #fee3ae;
 }
 
+.warningaccountcheck:link, .warningaccountcheck:visited, .warningaccountcheck:hover, .warningaccountcheck:active{
+    padding: 10px;
+    color: #fee3ae;
+}
+
 .posts{
     display: flex;
     padding: 20px;

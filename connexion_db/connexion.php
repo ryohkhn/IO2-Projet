@@ -1,5 +1,7 @@
 <?php
 
+// fonction de connexion à la base de donnée
+
 function connect(){
     $connexion = mysqli_connect ("localhost","root","","io2_projet") ;
      
