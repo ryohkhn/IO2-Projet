@@ -13,7 +13,7 @@ function timelinedisplay(){
     echo '<div>';
 
     postform(); //formulaire pour poster une publication
-
+    // affichage du fil d'actualité
     while($fetch=mysqli_fetch_assoc($query)){
         $postid=$fetch['post_id'];
         $nickname=idreference($postid);

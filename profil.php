@@ -7,14 +7,13 @@ require_once "./include/header.inc.php";
 require_once "./register_login/accountcheck.php";
 require_once "./sessionattribute.php";
 require_once "./connexion_db/connexion.php";
-require_once "./profil/modif.php";
 require_once "./profil/usersprofil.php";
 require_once "./follow/isfollowing.php";
 require_once "./profil/profilheader.php";
 require_once "./administration/isadmin.php";
 require_once "./administration/issuperadmin.php";
 require_once "./reports/isreported.php";
-require_once "./profil/isPPset.php";
+require_once "./accueil_fonction/accueilheader.php";
 
 // sert a retenir la page ou on etait pour nous renvoyer dessus apres s'être login
 
@@ -30,6 +29,8 @@ if(!accountcheck()){
 }
 
 profilheader();
+
+
 
 // Page de profil d'un utilisateur recherché
 

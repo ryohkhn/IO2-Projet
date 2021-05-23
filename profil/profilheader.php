@@ -1,13 +1,20 @@
 <?php
 
 function profilheader(){
-  echo '<header>';
-  echo '<a href="./accueil.php">Accueil</a>';
-  echo '<form action="./accueil_fonction/searchresult.php" method="post">';
-  echo '<input type="search" name="search" required>';
-  echo '</form>';
-  echo '<a href="./accueil_fonction/logout.php">Déconnexion</a>';
-  echo '</header>';
+  ?>
+  <header>
+    <div class="container_profil_alignement_top">
+      <div class="profil_aligment_top">
+        <a href="./accueil.php" class="barlinks"><i class="material-icons">home</i></a>
+        <a href="./accueil.php" class="barlinks"> Accueil</a>
+      </div>
+      <div class="profil_aligment_top"> 
+        <a href="./accueil_fonction/logout.php" class="barlinks"><i class="material-icons">power_settings_new</i></a>
+        <a href="./accueil_fonction/logout.php" class="barlinks"> Déconnexion</a>
+      </div>
+    </div>
+  </header>
+  <?php
 }
 
 

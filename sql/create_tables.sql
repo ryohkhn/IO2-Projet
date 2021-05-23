@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS animal (
   id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   type CHAR(10) NOT NULL DEFAULT '',
   description VARCHAR(150) DEFAULT '',
-  pp_pic varchar(100) DEFAULT 'images/defaultanimal.png',
+  pp_pic varchar(100) DEFAULT 'uploads/defaultanimal.png',
   animal_id INT(8) UNSIGNED NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (animal_id) REFERENCES users (id)
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS profil (
   id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   description VARCHAR(200) DEFAULT '',
   profil_id INT(8) UNSIGNED NOT NULL,
-  pp_pic varchar(100) DEFAULT 'images/defaultuser.png',
+  pp_pic varchar(100) DEFAULT 'uploads/defaultuser.png',
   PRIMARY KEY (id),
   FOREIGN KEY (profil_id) REFERENCES users (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

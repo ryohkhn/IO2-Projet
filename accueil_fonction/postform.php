@@ -6,11 +6,11 @@ function postform(){
     echo '<div class="postform">';
     echo '<form action="./accueil.php" method="post" enctype="multipart/form-data">';
     echo '<input type="hidden" name="MAX_FILE_SIZE" value="100000000000000" />';
-    echo '<textarea name="publication" cols="30" rows="10" maxlength="200" class="formcomplement" placeholder="Quoi de neuf ?" required></textarea>';
+    echo '<textarea name="publication" cols="30" rows="10" maxlength="200" class="formcomplement" placeholder="Quoi de neuf ? Vous pouvez écrire ce que vous voulez ici pour le publier." required></textarea>';
     echo '<div class="postformbuttons">';
     echo '<div>';
     echo '<label for="photoinput">';
-    echo '<img src="./images/imagelogo.png" alt="imagelogo" class="imageinput">';
+    echo '<img src="./images/imagelogo.png" alt="imagelogo" class="imageinput" >';
     echo '<input type="file" name="photo_post" id="photoinput">';
     echo '</label>';
     echo '</div>';

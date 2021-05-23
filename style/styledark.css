@@ -60,9 +60,6 @@ pre{
     border-radius: 5px;
 }
 
-::placeholder{
-    color: rgb(204, 203, 203);
-}
 
 .split{
     height: 100%;
@@ -304,7 +301,10 @@ pre{
     cursor: pointer;
 }
 
-#photoinput{
+#photoinput, #pp {
+    display: none;
+}
+.pp{
     display: none;
 }
 
@@ -400,3 +400,105 @@ pre{
     border-style: solid;
     flex-direction: column;
 }
+
+::placeholder {
+    color: rgb(119, 118, 118);
+    opacity: 1;
+  }
+.profilAffichage{
+    margin: 1%;
+    padding: 20px;
+    border: 1px #3e5c7e;
+    border-style: solid;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.profil_info{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.profil_info pre{
+    margin-left: 10%;
+}
+
+.container_profil_alignement_top{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.container_profil{
+    max-width: 95%;
+    width: auto;
+}
+.container_modif{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.editbuttonchild:link, .editbuttonchild:visited, .editbuttonchild:hover, .editbuttonchild:active{
+    color: white;
+
+}
+
+.editbuttonchild i{
+    font-size: 30px;
+}
+
+.button_right_username{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.button_style{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_style .link_style:link, .button_style .link_style:visited, .button_style .link_style:hover, .button_style .link_style:active{
+    text-decoration: none;
+    color: black;
+
+}
+.button_style span{
+    border: 3px solid #212F3D;
+    background-color: #fee3ae;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.firstformbutton2{
+    background-color: #fee3ae;
+    border: none;
+    color: black;
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+.linevalidation{
+    background-color: #172330;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+
+.label-file:hover {
+    color: #25a5c4;
+}
+
+.input-file {
+    opacity: 0;
+}
+

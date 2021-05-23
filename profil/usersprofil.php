@@ -1,5 +1,4 @@
 <?php
-
 function usersprofilsearched($nickname){
     $connexion=connect();
     
@@ -10,6 +9,7 @@ function usersprofilsearched($nickname){
         exit;
     }
     
+
     // Traitement du cas ou l'utilisateur essaye de visualiser un compte n'existant pas
 
     $req="SELECT * FROM users WHERE nickname='$nickname'";
@@ -21,254 +21,382 @@ function usersprofilsearched($nickname){
         exit;
     }
 
+    
     // Stockage de l'id du compte visité pour les requêtes suivantes
 
     while($users=mysqli_fetch_assoc($query)){
         $id=$users['id'];
     }
+    echo '<div class="container_profil">';
+
+    echo '<div class="profilAffichage">';
+
 
     // Bouton de follow/unfollow
 
-    echo '<div id="divusers">';
-    echo '@'.$nickname.'';
+    echo '<div class="button_right_username">';
 
-    if(isFollowing($_SESSION['id'],$id)){
-        echo '<button id="followbutton">Unfollow</button>';
-    }else{
-        echo '<button id="followbutton">Follow</button>';
-    }
-    echo '<script>';
-    echo "var btn = document.getElementById('followbutton');";
-    echo "btn.addEventListener('click', function() {";
-    echo "document.location.href = './follow/follow.php?followed_id=";
-    echo $id;
-    echo "';";
-    echo '});';
-    echo '</script>';
+    echo '<div>';
+    echo '@'.$nickname.'';
     echo '</div>';
 
-    // Bouton pour ajouter des administrateurs si l'utilisateur courant est lui même administrateur et pour les supprimer si l'utilisateur courant est un super administrateur
+    echo '<div class="button_style">';
+    echo"<span>";
+    if(isFollowing($_SESSION['id'],$id)){
+        echo '<a class="link_style" href="./follow/follow.php?followed_id='.$id.'">Unfollow</a>';
+    }else{
+        echo '<a class="link_style" href="./follow/follow.php?followed_id='.$id.'">Follow</a>';
+    }
+    echo"</span>";
 
+
+
+    // Bouton pour ajouter des administrateurs si l'utilisateur courant est lui même administrateur et pour les supprimer si l'utilisateur courant est un super administrateur
+    echo"<span>";
     if(isAdmin()){
         if(!isAdminProfil($id)){
-            echo '<div>';
-            echo '<button id="adminbutton">Donner les droits administrateurs</button>';
+            echo '<a class="link_style" href="./administration/adminmodification.php?id='.$id.'&profil='.$nickname.'"> Donner les droits administrateurs</a>';
         }
         else{
-            echo '<div>';
-            echo '<button id="adminbutton">Supprimer les droits administrateurs</button>';
+            echo '<a class="link_style" href="./administration/adminmodification.php?id='.$id.'&profil='.$nickname.'"> Supprimer les droits administrateurs</a>';
         }
-        echo '<script>';
-        echo "var btn = document.getElementById('adminbutton');";
-        echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './administration/adminmodification.php?id=";
-        echo $id;
-        echo "&profil=";
-        echo $nickname;
-        echo "';";
-        echo '});';
-        echo '</script>';
-        echo '</div>';
     }
+    echo"</span>";
+
+    echo '</div>';
+    
+    echo '</div>';
+
+
     if(isset($_GET['adminerror'])){
         echo '<div>';
         echo '<p>Vous ne pouvez pas retirer les droits administrateurs de ce compte</p>';
         echo '</div>';
     }
 
-    // Affichage de la description du compte
- 
-    $req2="SELECT * FROM profil where profil_id=$id";
-    $query2=mysqli_query($connexion,$req2);
-    while($ligne=mysqli_fetch_assoc($query2)){
-        echo '<div>';
-        echo '<p>';
-        echo $ligne['description'];
-        echo '</p>';
-        if(isPPset($id)){
-            echo '<img src="profil/'.$ligne['pp_pic'].'">';
-        }else{
-            echo "cet utilisateur n'a pas de photo de profil :/";
-        }
-        echo '</div>';
-    }
 
-    // affichage des animaux du compte 
-
-    $req="SELECT * FROM animal WHERE animal_id='$id'";
-    $query=mysqli_query($connexion,$req);
-    while($fetchquery=mysqli_fetch_assoc($query)){
-            
-        if(isPPsetAnimaux($fetchquery['id'])){
-            echo '<img src="profil/'.$fetchquery['pp_pic'].'">';
-        }else{
-            echo "cet Animal n'a pas de photo de profil :/";
-        }
-        echo "<br>";
-        echo $fetchquery['description'];
-        echo "<br>";
-        echo "<br>";
-    }
-
-    // Affichage des posts du compte
-
-    $req3="SELECT * FROM post WHERE post_id='$id' ORDER BY id DESC";
-    $query3=mysqli_query($connexion,$req3);
-    echo '<div id="divposts">';
-    while($ligne=mysqli_fetch_assoc($query3)){
-        echo '<div>';
-        echo '<div>';
-        echo '<span>';
-        echo '@'.$nickname;
-        echo '</span>';
-        echo '</div>';
-        echo '<div>';
-        echo '<p>';
-        echo $ligne['publication'];
-        echo '<img src="'.$ligne['image_path'].'">';
-        echo '</p>';
-        echo '</div>';
-
-        // ajoute le bouton de suppression sur la page de profil pour les administrateurs
-        echo '<div>';
-        if(isAdmin()){
-            echo '<button id="deletebutton'.$ligne['id'].'">Supprimer</button>';
-            echo '<script>';
-            echo 'var btn = document.getElementById("deletebutton'.$ligne['id'].'");';
-            echo "btn.addEventListener('click', function() {";
-            echo "document.location.href = './delete/deletepost.php?postid=";
-            echo $ligne['id'];
-            echo "&profil=";
-            echo $nickname;
-            echo "';";
-            echo '});';
-            echo '</script>';
-        }
-
-        // affichage du bouton de like sur la page profil
-
-        echo '<button id="likebutton'.$ligne['id'].'">Like</button>';
-        echo '<script>';
-        echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';
-        echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './likes/like.php?postid=";
-        echo $ligne['id'];
-        echo "&profil=";
-        echo $nickname;
-        echo "';";
-        echo '});';
-        echo '</script>';
-        echo $ligne['likescount'];
-
-        // bouton de signalement
-        
-        
-        if(isReported($ligne['id'])){
-            echo '<p>Publication signalée, en cours de vérification.</p>';
-        }
-        else{
-            echo '<button id="reportbutton'.$ligne['id'].'">Signaler</button>';
-            echo '<script>';
-            echo 'var btn = document.getElementById("reportbutton'.$ligne['id'].'");';
-            echo "btn.addEventListener('click', function() {";
-            echo "document.location.href = './reports/reportpost.php?postid=";
-            echo $ligne['id'];
-            echo "&profil=";
-            echo $nickname;
-            echo "';";
-            echo '});';
-            echo '</script>';
-        }
-        echo '</div>';
-        echo '</div>';
-    }
-    echo '</div>';
-}
-
-// fonction pour l'utilisateur courant
-
-function usersprofil(){
-    echo $_SESSION['nickname'];
-    echo "<br>";
-
-    $id=$_SESSION['id'];
+    // affichage informations utilisateur
     $connexion=connect();
     $req="SELECT * FROM profil WHERE profil_id='$id'";
     $query=mysqli_query($connexion,$req);
     $fetchquery=mysqli_fetch_assoc($query);
 
-    if(isPPset($id)){
-        echo '<img src="./profil/'.$fetchquery['pp_pic'].'" alt="photo de profil">';
-    }else{
-        echo "cet utilisateur n'a pas de photo de profil :/";
-    }
-    echo "<br>";
+    echo '<div class="profil_info">';
+    echo '<div>';
+    echo '<img src="./profil/'.$fetchquery['pp_pic'].'" class="profilpic" alt="photo de profil">';
+    echo "</div>";
+    echo '<div>';
+    echo "<pre>";
     echo $fetchquery['description'];
-    echo "<br>";
-    echo "<br>";
+    echo "</pre>";
+    echo "</div>";
+    echo '</div>';
 
+    // affichage informations des animaux utilisateur
     $connexion=connect();
     $req="SELECT * FROM animal WHERE animal_id='$id'";
     $query=mysqli_query($connexion,$req);
+
     while($fetchquery=mysqli_fetch_assoc($query)){
-            
-        if(isPPsetAnimaux($fetchquery['id'])){
-            echo '<img src="./profil/'.$fetchquery['pp_pic'].'" alt="photo de profil animal">';
-        }else{
-            echo "cet Animal n'a pas de photo de profil :/";
-        }
-        echo "<br>";
+
+        echo '<div class="profil_info">';
+        echo '<div>';
+        echo '<img src="./profil/'.$fetchquery['pp_pic'].'" class="profilpic" alt="photo de profil animal">';
+        echo "</div>";
+        echo '<div>';
+        echo "<pre>";
         echo $fetchquery['description'];
-        echo "<br>";
-        echo "<br>";
+        echo "</pre>";
+        echo "</div>";
+        echo '</div>';
+
     }
+    ?>
+    <div class="homeinfo">
+        <div>
+            <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM relationships WHERE followed_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Followers</p>
+        </div>
+        <div>
+        <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM post WHERE post_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Posts</p>
+        </div>
+        <div>
+            <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM relationships WHERE follower_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Following</p>
+        </div>
+    </div>
 
-    modif();
+    <?php
+    echo "</div>";
 
+    
+    $req="SELECT pp_pic FROM profil WHERE id=$id";
+    $query=mysqli_query($connexion,$req);
+    $pp_pic=mysqli_fetch_assoc($query);
 
     $req3="SELECT * FROM post WHERE post_id='$id' ORDER BY id DESC";
     $query3=mysqli_query($connexion,$req3);
     echo '<div id="divposts">';
     while($ligne=mysqli_fetch_assoc($query3)){
 
-        // post 
-
+        echo '<div class="posts">';
+        echo '<div class="timelinepicname">';
         echo '<div>';
+        echo '<a href="./profil.php?nickname='.$nickname.'"><img src="profil/'.$pp_pic['pp_pic'].'" alt="profil_pic" class="timelineprofilpic"></a>';
         echo '<div>';
-        echo '<p>';
-        echo $ligne['publication'];
-        echo '<img src="'.$ligne['image_path'].'">';
-        echo '</p>';
+        echo '<a href="./profil.php?nickname='.$nickname.'" class="timelinenickname">@'.$nickname.'</a>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div>';
+        echo '<pre class="postdisplay">'.$ligne['publication'].'</pre>';
+        if($ligne['image_path']!=null){
+            echo '<img src="'.$ligne['image_path'].'" class="imagedisplay">';
+        }
         echo '</div>';
 
+        echo '<div class="publicationbuttons">';
 
-        //bouton like 
+        // bouton de suppression
 
-        echo '<button id="likebutton'.$ligne['id'].'">Like</button>';
-        echo '<script>';
-        echo 'var btn = document.getElementById("likebutton'.$ligne['id'].'");';
-        echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './likes/like.php?postid=";
-        echo $ligne['id'];
-        echo "&profil=";
-        echo $_SESSION['nickname'];
-        echo "';";
-        echo '});';
-        echo '</script>';
-        echo $ligne['likescount'];
+        if(isAdmin()){
+            ?>
+            <div class="buttoncontainer">
+                <div>
+                    <a href="./delete/deletepost.php?postid=<?php echo $ligne['id'] ?>&profil=<?php echo $nickname;?>" class="deletebuttonchild">
+                        <i class="material-icons md-light">delete</i>
+                    </a>
+                </div>
+                <div>
+                    <p>Supprimer</p>
+                </div>
+            </div>
+            <?php
+        }
 
-        // bouton supprimer
+        // bouton de like/unlike
+        ?>
+        <div class="buttoncontainer">
+            <div>
+                <a href="./likes/like.php?postid=<?php echo $ligne['id'] ?>&profil=<?php echo $nickname;?>" class="likebuttonchild">
+                    <i class="material-icons md-light">favorite</i>
+                </a>
+            </div>
+            <div>
+                <p><?php echo $ligne['likescount']; ?></p>
+            </div>
+        </div>
+        <?php
 
-        echo '<button id="deletebutton'.$ligne['id'].'">Supprimer</button>';
-        echo '<script>';
-        echo 'var btn = document.getElementById("deletebutton'.$ligne['id'].'");';
-        echo "btn.addEventListener('click', function() {";
-        echo "document.location.href = './delete/deletepost.php?postid=";
-        echo $ligne['id'];
-        echo "';";
-        echo '});';
-        echo '</script>';
+        if(!isReported($ligne['id'])){
+            ?>
+            <div class="buttoncontainer">
+                <div>
+                    <a href="./reports/reportpost.php?postid=<?php echo $ligne['id'] ?>&profil=<?php echo $nickname;?>" class="reportbuttonchild">
+                        <i class="material-icons md-light">report_problem</i>
+                    </a>
+                </div>
+                <div>
+                    <p>Signaler</p>
+                </div>
+            </div>
+            <?php
+        }
+        echo '</div>';
+        echo '</div>';
+        
+
+
+    
     }
+    echo "</div>";
+}
+
+
+
+
+
+
+
+
+
+
+
+// fonction pour l'utilisateur courant
+
+function usersprofil(){
+
+    $id=$_SESSION['id'];
+    $nickname=$_SESSION['nickname'];
+
+    echo '<div class="container_profil">';
+
+    echo '<div class="profilAffichage">';
+
+    echo '<div class="container_modif">';
+    echo '<div>';
+    echo "@$nickname";
+    echo "</div>";
+    echo "<div>";
+    echo '<a href="./profil/modif_profil.php" class="editbuttonchild" ><i class="material-icons">edit</i></a>'; //affichage bouton modifier son profil
+    echo "</div>";
+    echo "</div>";
+
+    
+    // affichage informations utilisateur
+    $connexion=connect();
+    $req="SELECT * FROM profil WHERE profil_id='$id'";
+    $query=mysqli_query($connexion,$req);
+    $fetchquery=mysqli_fetch_assoc($query);
+
+    echo '<div class="profil_info">';
+    echo '<div>';
+    echo '<img src="./profil/'.$fetchquery['pp_pic'].'" class="profilpic" alt="photo de profil">';
+    echo "</div>";
+    echo '<div>';
+    echo "<pre>";
+    echo $fetchquery['description'];
+    echo "</pre>";
+    echo "</div>";
+    echo '</div>';
+
+    // affichage informations des animaux utilisateur
+    $connexion=connect();
+    $req="SELECT * FROM animal WHERE animal_id='$id'";
+    $query=mysqli_query($connexion,$req);
+
+    while($fetchquery=mysqli_fetch_assoc($query)){
+
+        echo '<div class="profil_info">';
+        echo '<div>';
+        echo '<img src="./profil/'.$fetchquery['pp_pic'].'" class="profilpic" alt="photo de profil animal">';
+        echo "</div>";
+        echo '<div>';
+        echo "<pre>";
+        echo $fetchquery['description'];
+        echo "</pre>";
+        echo "</div>";
+        echo '</div>';
+
+    }
+    ?>
+    <div class="homeinfo">
+        <div>
+            <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM relationships WHERE followed_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Followers</p>
+        </div>
+        <div>
+        <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM post WHERE post_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Posts</p>
+        </div>
+        <div>
+            <p>
+            <?php 
+            $query=mysqli_query($connexion,"SELECT * FROM relationships WHERE follower_id='$id'");
+            $fetchquery=mysqli_num_rows($query);
+            echo $fetchquery;
+            ?>
+            </p>
+            <p>Following</p>
+        </div>
+    </div>
+
+    <?php
+    echo "</div>";
+
+    
+    $req="SELECT pp_pic FROM profil WHERE id=$id";
+    $query=mysqli_query($connexion,$req);
+    $pp_pic=mysqli_fetch_assoc($query);
+
+    $req3="SELECT * FROM post WHERE post_id='$id' ORDER BY id DESC";
+    $query3=mysqli_query($connexion,$req3);
+    echo '<div id="divposts">';
+    while($ligne=mysqli_fetch_assoc($query3)){
+
+        echo '<div class="posts">';
+        echo '<div class="timelinepicname">';
+        echo '<div>';
+        echo '<a href="./profil.php?nickname='.$nickname.'"><img src="profil/'.$pp_pic['pp_pic'].'" alt="profil_pic" class="timelineprofilpic"></a>';
+        echo '<div>';
+        echo '<a href="./profil.php?nickname='.$nickname.'" class="timelinenickname">@'.$nickname.'</a>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div>';
+        echo '<pre class="postdisplay">'.$ligne['publication'].'</pre>';
+        if($ligne['image_path']!=null){
+            echo '<img src="'.$ligne['image_path'].'" class="imagedisplay">';
+        }
+        echo '</div>';
+
+        echo '<div class="publicationbuttons">';
+
+        // bouton de suppression
+
+        if($ligne['post_id']==$id || isAdmin()){
+            ?>
+            <div class="buttoncontainer">
+                <div>
+                    <a href="./delete/deletepost.php?postid=<?php echo $ligne['id'] ?>&profil=<?php echo $nickname;?>" class="deletebuttonchild">
+                        <i class="material-icons md-light">delete</i>
+                    </a>
+                </div>
+                <div>
+                    <p>Supprimer</p>
+                </div>
+            </div>
+            <?php
+        }
+
+        // bouton de like/unlike
+        ?>
+        <div class="buttoncontainer">
+            <div>
+                <a href="./likes/like.php?postid=<?php echo $ligne['id'] ?>&profil=<?php echo $nickname;?>" class="likebuttonchild">
+                    <i class="material-icons md-light">favorite</i>
+                </a>
+            </div>
+            <div>
+                <p><?php echo $ligne['likescount']; ?></p>
+            </div>
+        </div>
+        <?php
+        echo '</div>';
+        echo '</div>';
+    }
+    echo "</div>";
 }
 
 ?>
